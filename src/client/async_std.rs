@@ -101,7 +101,7 @@ mod tests {
         let server = MockServer::start_async().await;
 
         let mock = server.mock(|when, then| {
-            when.method(GET).path("/v1/missing");
+            when.method(GET).path("/1/missing");
             then.status(404).body("{
                 \"error\": \"not_found\",
                 \"error_description\": \"The requested resource was not found.\"
@@ -109,7 +109,7 @@ mod tests {
               ");
         });
 
-        let req = Request::get(Url::parse(&server.url("/v1/missing")).unwrap());
+        let req = Request::get(Url::parse(&server.url("/1/missing")).unwrap());
         let res = client.execute::<()>(req).await;
 
         mock.assert_hits_async(1).await;

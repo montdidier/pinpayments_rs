@@ -10,7 +10,10 @@ use crate::{
     Headers, PinError,
 };
 
-static USER_AGENT: &str = concat!("PinPayments/1 RustClient/", env!("CARGO_PKG_VERSION"));
+const USER_AGENT: &str = concat!("PinPayments/1 RustClient/", env!("CARGO_PKG_VERSION"));
+
+pub const DEFAULT_API_BASE_URL: &str = "https://api.pinpayments.com/1/";
+pub const DEFAULT_TEST_API_BASE_URL: &str = "https://test-api.pinpayments.com/1/";
 
 #[derive(Clone)]
 pub struct Client {
@@ -18,14 +21,13 @@ pub struct Client {
     secret_key: String,
     headers: Headers,
     app_info: Option<AppInfo>,
-    api_base: Url,
-    api_root: String,
+    api_base: Url
 }
 
 impl Client {
     /// Create a new client using the presented secret key.
     pub fn new(secret_key: impl Into<String>) -> Self {
-        Self::from_url("https://test-api.pinpayments.com/", secret_key)
+        Self::from_url(DEFAULT_API_BASE_URL, secret_key)
     }
 
     /// Create a new client making use of the specified URL. Typically used in sandbox and test
@@ -39,7 +41,6 @@ impl Client {
             },
             app_info: None,
             api_base: Url::parse(url.into()).expect("invalid url"),
-            api_root: "1".to_string(),
         }
     }
 
@@ -132,8 +133,8 @@ impl Client {
     }
 
     fn url(&self, path: &str) -> Url {
-        let mut url = self.api_base.clone();
-        url.set_path(&format!("{}/{}", self.api_root, path.trim_start_matches('/')));
+        let base = self.api_base.clone();
+        let url = base.join(path.trim_start_matches('/')).unwrap();
         url
     }
 

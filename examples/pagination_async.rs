@@ -5,7 +5,7 @@ use pinpayments::{Client, Charge};
 #[tokio::main]
 async fn main() {
     let secret_key = std::env::var("PINPAYMENTS_SECRET_KEY").expect("Missing PINPAYMENTS_SECRET_KEY in env");
-    let client = Client::new(secret_key);
+    let client = Client::from_url(pinpayments::DEFAULT_TEST_API_BASE_URL, secret_key);
 
     let stream = Charge::list_with_paginator(&client, Some(5));
 

@@ -10,4 +10,5 @@ pub(crate) mod config {
 pub use config::BaseClient;
 pub use config::Response;
 
+pub use self::pinpayments::DEFAULT_TEST_API_BASE_URL;
 pub use self::pinpayments::Client;
