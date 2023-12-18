@@ -90,13 +90,41 @@ pub struct VerifyCharge<'a> {
     pub session_token: &'a SessionId
 }
 
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "snake_case")]
+pub enum SortByField {
+    CreatedAt,
+    CapturedAt,
+    Amount
+}
+
+#[derive(Debug, Serialize)]
+pub enum SortDirection {
+    Asc = 1,
+    Desc = -1
+}
+
+#[derive(Debug, Serialize, Default)]
+pub struct ChargeSearchParams<'a> {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub query: Option<&'a str>,
+    #[serde(with = "time::serde::iso8601::option", skip_serializing_if = "Option::is_none")]
+    pub start_date: Option<OffsetDateTime>,
+    #[serde(with = "time::serde::iso8601::option", skip_serializing_if = "Option::is_none")]
+    pub end_date: Option<OffsetDateTime>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sort_by: Option<SortByField>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub direction: Option<SortDirection>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub page: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub per_page: Option<u32>
+}
+
 impl Charge {
     pub fn create(client: &Client, params: CreateCharge<'_>) -> Response<Charge> {
         unpack_contained(client.post_form(&format!("/charges"), &params))
-    }
-
-    pub fn retrieve(client: &Client, token: &ChargeId) -> Response<Charge> {
-        unpack_contained(client.get(&format!("/charges/{}", token)))
     }
 
     pub fn void(client: &Client, token: &ChargeId) -> Response<Charge> {
@@ -126,6 +154,14 @@ impl Charge {
         )
     }
 
+    pub fn search(client: &Client, search_params: ChargeSearchParams<'_>) -> Response<Page<Charge>> {
+        client.get_query("/charges/search", &search_params)
+    }
+
+    pub fn retrieve(client: &Client, token: &ChargeId) -> Response<Charge> {
+        unpack_contained(client.get(&format!("/charges/{}", token)))
+    }
+
     pub fn verify(client: &Client, session_token: &SessionId) -> Response<Charge> {
         unpack_contained(client.get_query("/charges/verify", VerifyCharge { session_token: session_token }))
     }
@@ -134,5 +170,15 @@ impl Charge {
 impl fmt::Display for Charge {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "({}, {})", self.token, self.amount)
+    }
+}
+
+impl fmt::Display for SortByField {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            SortByField::CreatedAt => write!(f, "created_at"),
+            SortByField::CapturedAt => write!(f, "captured_at"),
+            SortByField::Amount => write!(f, "amount")
+        }
     }
 }
