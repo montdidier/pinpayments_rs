@@ -1,3 +1,5 @@
+[![CI/CD](https://github.com/montdidier/pinpayments_rs/actions/workflows/rust.yml/badge.svg)](https://github.com/montdidier/pinpayments_rs/actions/workflows/rust.yml)
+
 # pinpayments_rs
 
 pinpayments_rs is a rust wrapper for the [Pin Payments API](https://pinpayments.com/developers/api-reference/).
