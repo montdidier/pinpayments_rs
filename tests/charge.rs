@@ -34,7 +34,7 @@ async fn charge_create_test() {
                 .body(serde_json::to_string(&json).expect("failed to serialize body"))),
     );
 
-    let client = Client::from_url(server.url_str("/").as_str(), "sk_test_12345");
+    let client = Client::from_url(server.url_str("/1/").as_str(), "sk_test_12345");
 
     let charge = Charge::create(
         &client, 
@@ -110,7 +110,7 @@ async fn get_charge_test() {
 
     let token = "ch_lfUYEBK14zotCTykezJkfg".parse().unwrap();
 
-    let client = Client::from_url(server.url_str("/").as_str(), "sk_test_12345");
+    let client = Client::from_url(server.url_str("/1/").as_str(), "sk_test_12345");
     let charge = Charge::retrieve(&client, &token).await.unwrap();
 
     assert_eq!(charge.token, "ch_lfUYEBK14zotCTykezJkfg");
@@ -137,7 +137,7 @@ async fn charge_void_test() {
 
     let token = "ch_lfUYEBK14zotCTykezJkfg".parse().unwrap();
 
-    let client = Client::from_url(server.url_str("/").as_str(), "sk_test_12345");
+    let client = Client::from_url(server.url_str("/1/").as_str(), "sk_test_12345");
     let charge = Charge::void(&client, &token).await.unwrap();
 
     assert_eq!(charge.token, "ch_lfUYEBK14zotCTykezJkfg");
@@ -166,7 +166,7 @@ async fn charge_capture_test() {
 
     let token = "ch_lfUYEBK14zotCTykezJkfg".parse().unwrap();
 
-    let client = Client::from_url(server.url_str("/").as_str(), "sk_test_12345");
+    let client = Client::from_url(server.url_str("/1/").as_str(), "sk_test_12345");
     let charge = Charge::capture(&client, &token).await.unwrap();
 
     assert_eq!(charge.token, "ch_lfUYEBK14zotCTykezJkfg");
@@ -188,7 +188,7 @@ async fn charge_list_test() {
             respond_with(json_encoded(json)),
     );
 
-    let client = Client::from_url(server.url_str("/").as_str(), "sk_test_12345");
+    let client = Client::from_url(server.url_str("/1/").as_str(), "sk_test_12345");
     let charges = Charge::list(&client, None, None).await.unwrap();
 
     assert_eq!(charges.items[0].token, "ch_lfUYEBK14zotCTykezJkfg");
@@ -217,7 +217,7 @@ async fn charge_verify_test() {
 
     let session_token = "se_sGt9PuNYfVzJqTSLP2CV8g".parse().unwrap();
 
-    let client = Client::from_url(server.url_str("/").as_str(), "sk_test_12345");
+    let client = Client::from_url(server.url_str("/1/").as_str(), "sk_test_12345");
     let charge = Charge::verify(&client, &session_token).await.unwrap();
 
     assert_eq!(charge.success, true);
