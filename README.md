@@ -1,4 +1,5 @@
 [![CI/CD](https://github.com/montdidier/pinpayments_rs/actions/workflows/rust.yml/badge.svg)](https://github.com/montdidier/pinpayments_rs/actions/workflows/rust.yml)
+[![MIT Licensed](https://img.shields.io/github/license/montdidier/pinpayments_rs.svg)](https://github.com/montdidier/pinpayments_rs/blob/main/LICENSE)
 
 # pinpayments_rs
 
