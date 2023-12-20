@@ -1,4 +1,6 @@
+use crate::client::{Client, Response};
 use crate::ids::{CardId};
+use crate::params::{unpack_contained};
 
 use serde::{Deserialize, Serialize};
 
@@ -28,10 +30,17 @@ pub struct Card {
     pub address_line1: String,
     pub address_line2: Option<String>,
     pub address_city: String,
-    pub address_postcode: String,
+    pub address_postcode: Option<String>,
+    pub address_state: Option<String>,
     pub address_country: String,
     pub network_type: Option<String>,
     pub network_format: Option<String>,
     pub customer_token: Option<String>,
     pub primary: Option<bool>,
+}
+
+impl Card {
+    pub fn create(client: &Client, params: CardParams<'_>) -> Response<Card> {
+        unpack_contained(client.post_form(&format!("/cards"), &params))
+    }
 }
