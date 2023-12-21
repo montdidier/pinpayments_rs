@@ -10,7 +10,7 @@ use crate::{
     client::{Response},
 };
 
-#[derive(Clone, Default)]
+#[derive(Clone, Debug, Default)]
 pub struct AppInfo {
     pub name: String,
     pub url: Option<String>,
@@ -28,7 +28,7 @@ impl ToString for AppInfo {
     }
 }
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct Headers {
     pub user_agent: String,
 }

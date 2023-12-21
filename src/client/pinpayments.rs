@@ -15,7 +15,7 @@ const USER_AGENT: &str = concat!("PinPayments/1 RustClient/", env!("CARGO_PKG_VE
 pub const DEFAULT_API_BASE_URL: &str = "https://api.pinpayments.com/1/";
 pub const DEFAULT_TEST_API_BASE_URL: &str = "https://test-api.pinpayments.com/1/";
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct Client {
     client: crate::client::BaseClient,
     secret_key: String,
