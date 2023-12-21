@@ -20,7 +20,7 @@ pub(crate) fn err<T: Send + 'static>(err: PinError) -> Response<T> {
     Box::pin(future::ready(Err(err)))
 }
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct BaseClient {
     client: surf::Client,
 }
