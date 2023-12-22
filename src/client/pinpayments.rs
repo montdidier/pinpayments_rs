@@ -4,7 +4,7 @@ use serde::{de::DeserializeOwned, Serialize};
 use surf::http::auth::BasicAuth;
 
 use crate::{
-    client::{BaseClient, Response},
+    client::{BaseClient, Response, StatusOnlyResponse},
     config::err,
     params::AppInfo,
     Headers, PinError,
@@ -80,6 +80,11 @@ impl Client {
     pub fn delete<T: DeserializeOwned + Send + 'static>(&self, path: &str) -> Response<T> {
         let url = self.url(path);
         self.client.execute::<T>(self.create_request(Method::Delete, url))
+    }
+
+    pub fn delete_status_only(&self, path: &str) -> StatusOnlyResponse {
+        let url = self.url(path);
+        self.client.execute_status_only(self.create_request(Method::Delete, url))
     }
 
     /// Make a http `DELETE` request using presented query parameters

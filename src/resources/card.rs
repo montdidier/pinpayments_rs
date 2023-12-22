@@ -41,6 +41,6 @@ pub struct Card {
 
 impl Card {
     pub fn create(client: &Client, params: CardParams<'_>) -> Response<Card> {
-        unpack_contained(client.post_form(&format!("/cards"), &params))
+        unpack_contained(client.post_form("/cards", &params))
     }
 }
