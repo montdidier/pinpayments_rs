@@ -4,7 +4,7 @@ use crate::params::{unpack_contained};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Serialize, Default)]
 pub struct CardParams<'a> {
     pub number: &'a str,
     pub expiry_month: &'a str,
@@ -12,6 +12,7 @@ pub struct CardParams<'a> {
     pub cvc: &'a str,
     pub name: &'a str,
     pub address_line1: &'a str,
+    pub address_line2: Option<&'a str>,
     pub address_city: &'a str,
     pub address_state: &'a str,
     pub address_postcode: &'a str,
