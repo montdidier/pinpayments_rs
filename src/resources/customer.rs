@@ -41,6 +41,7 @@ pub struct Customer {
     pub email: String,
     pub first_name: Option<String>,
     pub last_name: Option<String>,
+    pub phone_number: Option<String>,
     pub company: Option<String>,
     pub notes: Option<String>,
     #[serde(with = "time::serde::iso8601::option")]
