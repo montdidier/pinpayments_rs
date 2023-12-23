@@ -73,4 +73,6 @@ async fn customer_create_test() {
     assert_eq!(customer.company.unwrap(), "Pin Payments");
     assert_eq!(customer.notes.unwrap(), "Account manager at Pin Payments");
     assert_eq!(customer.created_at.unwrap(), datetime!(2012-06-22 6:27:33 UTC));
+    assert_eq!(customer.card.token, "card_nytGw7koRg23EEp9NTmz9w");
+    assert_eq!(customer.card.display_number, "XXXX-XXXX-XXXX-0000");
 }
