@@ -56,6 +56,7 @@ async fn charge_create_test() {
                     address_postcode: "6454",
                     address_state: "WA",
                     address_country: "Australia",
+                    ..Default::default()
                 }
             ),
             ..Default::default()

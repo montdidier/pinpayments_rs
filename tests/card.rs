@@ -44,6 +44,7 @@ async fn card_create_test() {
             cvc: "123",
             name: "Roland Roboat",
             address_line1: "42 Sevenoaks St",
+            address_line2: None,
             address_city: "Lathlain",
             address_postcode: "6454",
             address_state: "WA",
