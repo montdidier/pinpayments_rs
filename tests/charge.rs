@@ -182,6 +182,8 @@ async fn charge_capture_test() {
 async fn charge_list_test() {
     let json = get_fixture("tests/fixtures/get-charges.json");
 
+    let auth = BasicAuth::new("sk_test_12345", "");
+
     let server = SERVER_POOL.get_server();
 
     server.expect(
