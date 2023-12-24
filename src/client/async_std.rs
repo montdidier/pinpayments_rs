@@ -7,6 +7,7 @@ use serde::de::DeserializeOwned;
 use crate::error::{ErrorResponse, PinError};
 
 pub type Response<T> = BoxFuture<'static, Result<T, PinError>>;
+pub type StatusOnlyResponse = BoxFuture<'static, Result<u16, PinError>>;
 
 #[allow(dead_code)]
 #[inline(always)]
@@ -42,6 +43,18 @@ impl BaseClient {
             let bytes = send_inner(&client, request).await?;
             let json_deserializer = &mut serde_json::Deserializer::from_slice(&bytes);
             serde_path_to_error::deserialize(json_deserializer).map_err(PinError::from)
+        })
+    }
+
+    pub fn execute_status_only(
+        &self,
+        request: Request,
+    ) -> StatusOnlyResponse {
+
+        let client = self.client.clone();
+
+        Box::pin(async move {
+            Ok(send_inner_status_only(&client, request).await?)
         })
     }
 }
@@ -83,6 +96,43 @@ async fn send_inner(
     }
 
     Ok(bytes)
+}
+
+async fn send_inner_status_only(
+    client: &surf::Client,
+    mut request: Request,
+) -> Result<u16, PinError> {
+
+    let body = request.body_bytes().await?;
+
+    let mut request = request.clone();
+    request.set_body(body.clone());
+
+    let mut response = match client.send(request).await {
+        Ok(response) => {
+            response
+        },
+        Err(err) => {
+            return Err(PinError::from(err))
+        }
+    };
+
+    let status = response.status();
+
+    let bytes = response.body_bytes().await?;
+
+    if !status.is_success() {
+        let json_deserializer = &mut serde_json::Deserializer::from_slice(&bytes);
+        let error = serde_path_to_error::deserialize(json_deserializer)
+            .map(|e: ErrorResponse| {
+                PinError::from(e)
+            })
+            .unwrap_or_else(PinError::from);
+
+            return Err(error)
+    }
+
+    Ok(u16::from(status))
 }
 
 
