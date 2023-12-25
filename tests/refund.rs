@@ -1,20 +1,15 @@
 use pinpayments::{Client, Currency, CreateRefund, Refund};
-use std::fs::File;
 use httptest::{ServerPool, Expectation, matchers::*, responders::*};
 use surf::http::auth::BasicAuth;
 use time::macros::datetime;
 
-static SERVER_POOL: ServerPool = ServerPool::new(2);
+mod common;
 
-fn get_fixture(path: &str) -> serde_json::Value {
-    let file = File::open(path)
-        .expect("file should open read only");
-    serde_json::from_reader(file).expect("file should be JSON")
-}
+static SERVER_POOL: ServerPool = ServerPool::new(2);
 
 #[tokio::test]
 async fn charge_refund_test() {
-    let json = get_fixture("tests/fixtures/create-refund.json");
+    let json = common::get_fixture("tests/fixtures/create-refund.json");
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
@@ -53,7 +48,7 @@ async fn charge_refund_test() {
 
 #[tokio::test]
 async fn refund_list_test() {
-    let json = get_fixture("tests/fixtures/get-refunds.json");
+    let json = common::get_fixture("tests/fixtures/get-refunds.json");
 
     let server = SERVER_POOL.get_server();
 
@@ -77,7 +72,7 @@ async fn refund_list_test() {
 
 #[tokio::test]
 async fn charge_refunds_test() { 
-    let json = get_fixture("tests/fixtures/get-refunds.json");
+    let json = common::get_fixture("tests/fixtures/get-refunds.json");
     
     let server = SERVER_POOL.get_server();
 
@@ -103,7 +98,7 @@ async fn charge_refunds_test() {
 
 #[tokio::test]
 async fn get_refund_test() {
-    let json = get_fixture("tests/fixtures/get-refund.json");
+    let json = common::get_fixture("tests/fixtures/get-refund.json");
     
     let server = SERVER_POOL.get_server();
 

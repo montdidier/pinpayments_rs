@@ -1,19 +1,14 @@
 use pinpayments::{Client, CardParams, Card};
-use std::fs::File;
 use httptest::{ServerPool, Expectation, matchers::*, responders::*};
 use surf::http::auth::BasicAuth;
 
-static SERVER_POOL: ServerPool = ServerPool::new(2);
+mod common;
 
-fn get_fixture(path: &str) -> serde_json::Value {
-    let file = File::open(path)
-        .expect("file should open read only");
-    serde_json::from_reader(file).expect("file should be JSON")
-}
+static SERVER_POOL: ServerPool = ServerPool::new(2);
 
 #[tokio::test]
 async fn card_create_test() {
-    let json = get_fixture("tests/fixtures/create-card.json");
+    let json = common::get_fixture("tests/fixtures/create-card.json");
 
     let auth = BasicAuth::new("sk_test_12345", "");
 

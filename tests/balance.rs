@@ -1,19 +1,14 @@
 use pinpayments::{Client, Currency, Balance};
-use std::fs::File;
 use httptest::{ServerPool, Expectation, matchers::*, responders::*};
 use surf::http::auth::BasicAuth;
 
-static SERVER_POOL: ServerPool = ServerPool::new(1);
+mod common;
 
-fn get_fixture(path: &str) -> serde_json::Value {
-    let file = File::open(path)
-        .expect("file should open read only");
-    serde_json::from_reader(file).expect("file should be JSON")
-}
+static SERVER_POOL: ServerPool = ServerPool::new(1);
 
 #[tokio::test]
 async fn get_balance_test() {
-    let json = get_fixture("tests/fixtures/get-balance.json");
+    let json = common::get_fixture("tests/fixtures/get-balance.json");
 
     println!("{json}");
 

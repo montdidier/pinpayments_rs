@@ -1,20 +1,15 @@
 use pinpayments::{Client, Currency, CreateCharge, Charge, CardParams};
-use std::fs::File;
 use httptest::{ServerPool, Expectation, matchers::*, responders::*};
 use surf::http::auth::BasicAuth;
 use time::macros::datetime;
 
-static SERVER_POOL: ServerPool = ServerPool::new(2);
+mod common;
 
-fn get_fixture(path: &str) -> serde_json::Value {
-    let file = File::open(path)
-        .expect("file should open read only");
-    serde_json::from_reader(file).expect("file should be JSON")
-}
+static SERVER_POOL: ServerPool = ServerPool::new(2);
 
 #[tokio::test]
 async fn charge_create_test() {
-    let json = get_fixture("tests/fixtures/create-charge.json");
+    let json = common::get_fixture("tests/fixtures/create-charge.json");
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
@@ -92,7 +87,7 @@ async fn charge_create_test() {
 
 #[tokio::test]
 async fn get_charge_test() {
-    let json = get_fixture("tests/fixtures/get-charge.json");
+    let json = common::get_fixture("tests/fixtures/get-charge.json");
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
@@ -119,7 +114,7 @@ async fn get_charge_test() {
 
 #[tokio::test]
 async fn charge_void_test() {
-    let json = get_fixture("tests/fixtures/charge-void.json");
+    let json = common::get_fixture("tests/fixtures/charge-void.json");
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
@@ -148,7 +143,7 @@ async fn charge_void_test() {
 
 #[tokio::test]
 async fn charge_capture_test() {
-    let json = get_fixture("tests/fixtures/charge-capture.json");
+    let json = common::get_fixture("tests/fixtures/charge-capture.json");
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
@@ -180,7 +175,7 @@ async fn charge_capture_test() {
 
 #[tokio::test]
 async fn charge_list_test() {
-    let json = get_fixture("tests/fixtures/get-charges.json");
+    let json = common::get_fixture("tests/fixtures/get-charges.json");
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
@@ -206,7 +201,7 @@ async fn charge_list_test() {
 
 #[tokio::test]
 async fn charge_verify_test() {
-    let json = get_fixture("tests/fixtures/charge-verify.json");
+    let json = common::get_fixture("tests/fixtures/charge-verify.json");
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
