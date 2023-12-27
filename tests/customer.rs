@@ -1,12 +1,10 @@
 use pinpayments::{Client, Currency, CreateCustomer, Customer, CardParams};
-use httptest::{ServerPool, Expectation, matchers::*, responders::*};
+use httptest::{Expectation, matchers::*, responders::*};
 use surf::http::auth::BasicAuth;
 use time::macros::datetime;
 use http::StatusCode;
 
-mod common;
-
-static SERVER_POOL: ServerPool = ServerPool::new(2);
+pub mod common;
 
 #[tokio::test]
 async fn customer_create_test() {
@@ -14,7 +12,7 @@ async fn customer_create_test() {
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     server.expect(
         Expectation::matching(
@@ -79,7 +77,7 @@ async fn customer_retrieve_test() {
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     let customer_token = "cus_XZg1ULpWaROQCOT5PdwLkQ".parse().unwrap();
 
@@ -118,7 +116,7 @@ async fn customer_list_test() {
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     server.expect(
         Expectation::matching(
@@ -151,7 +149,7 @@ async fn customer_list_test() {
 async fn customer_delete_test() {
     let auth = BasicAuth::new("sk_test_12345", "");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     let customer_token = "cus_XZg1ULpWaROQCOT5PdwLkQ".parse().unwrap();
 
@@ -182,7 +180,7 @@ async fn customer_list_charges_test() {
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     let customer_token = "cus_XZg1ULpWaROQCOT5PdwLkQ".parse().unwrap();
 
@@ -218,7 +216,7 @@ async fn customer_list_cards_test() {
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     let customer_token = "cus_XZg1ULpWaROQCOT5PdwLkQ".parse().unwrap();
 
@@ -252,7 +250,7 @@ async fn customer_create_card_test() {
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     let customer_token = "cus_XZg1ULpWaROQCOT5PdwLkQ".parse().unwrap();
 

@@ -1,11 +1,9 @@
 use pinpayments::{Client, Currency, CreateRefund, Refund};
-use httptest::{ServerPool, Expectation, matchers::*, responders::*};
+use httptest::{Expectation, matchers::*, responders::*};
 use surf::http::auth::BasicAuth;
 use time::macros::datetime;
 
-mod common;
-
-static SERVER_POOL: ServerPool = ServerPool::new(2);
+pub mod common;
 
 #[tokio::test]
 async fn charge_refund_test() {
@@ -13,7 +11,7 @@ async fn charge_refund_test() {
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     let charge_token = "ch_bZ3RhJnIUZ8HhfvH8CCvfA".parse().unwrap();
 
@@ -50,7 +48,7 @@ async fn charge_refund_test() {
 async fn refund_list_test() {
     let json = common::get_fixture("tests/fixtures/get-refunds.json");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     server.expect(
         Expectation::matching(request::method_path("GET", "/1/refunds")).
@@ -74,7 +72,7 @@ async fn refund_list_test() {
 async fn charge_refunds_test() { 
     let json = common::get_fixture("tests/fixtures/get-refunds.json");
     
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     let charge_token = "ch_bZ3RhJnIUZ8HhfvH8CCvfA".parse().unwrap();
 
@@ -100,7 +98,7 @@ async fn charge_refunds_test() {
 async fn get_refund_test() {
     let json = common::get_fixture("tests/fixtures/get-refund.json");
     
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     let refund_token = "rf_ERCQy--Ay6o-NKGiUVcKKA".parse().unwrap();
 

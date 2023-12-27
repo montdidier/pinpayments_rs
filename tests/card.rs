@@ -1,10 +1,8 @@
 use pinpayments::{Client, CardParams, Card};
-use httptest::{ServerPool, Expectation, matchers::*, responders::*};
+use httptest::{Expectation, matchers::*, responders::*};
 use surf::http::auth::BasicAuth;
 
-mod common;
-
-static SERVER_POOL: ServerPool = ServerPool::new(2);
+pub mod common;
 
 #[tokio::test]
 async fn card_create_test() {
@@ -12,7 +10,7 @@ async fn card_create_test() {
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     server.expect(
         Expectation::matching(
