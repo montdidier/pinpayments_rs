@@ -1,0 +1,11 @@
+{
+  "response": {
+    "token": "ba_nytGw7koRg23EEp9NTmz9w",
+    "name": "Mr Roland Robot",
+    "bsb": "123456",
+    "number": "XXXXXX321",
+    "bank_name": "",
+    "branch": ""
+  },
+  "ip_address": "192.0.2.42"
+}
