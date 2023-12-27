@@ -1,10 +1,8 @@
 use pinpayments::{Client, Currency, Balance};
-use httptest::{ServerPool, Expectation, matchers::*, responders::*};
+use httptest::{Expectation, matchers::*, responders::*};
 use surf::http::auth::BasicAuth;
 
-mod common;
-
-static SERVER_POOL: ServerPool = ServerPool::new(1);
+pub mod common;
 
 #[tokio::test]
 async fn get_balance_test() {
@@ -14,7 +12,7 @@ async fn get_balance_test() {
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     server.expect(
         Expectation::matching(

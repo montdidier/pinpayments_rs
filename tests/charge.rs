@@ -1,11 +1,9 @@
 use pinpayments::{Client, Currency, CreateCharge, Charge, CardParams};
-use httptest::{ServerPool, Expectation, matchers::*, responders::*};
+use httptest::{Expectation, matchers::*, responders::*};
 use surf::http::auth::BasicAuth;
 use time::macros::datetime;
 
-mod common;
-
-static SERVER_POOL: ServerPool = ServerPool::new(2);
+pub mod common;
 
 #[tokio::test]
 async fn charge_create_test() {
@@ -13,7 +11,7 @@ async fn charge_create_test() {
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     server.expect(
         Expectation::matching(
@@ -91,7 +89,7 @@ async fn get_charge_test() {
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     server.expect(
         Expectation::matching(
@@ -118,7 +116,7 @@ async fn charge_void_test() {
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     server.expect(
         Expectation::matching(
@@ -147,7 +145,7 @@ async fn charge_capture_test() {
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     server.expect(
         Expectation::matching(
@@ -179,7 +177,7 @@ async fn charge_list_test() {
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     server.expect(
         Expectation::matching(
@@ -205,7 +203,7 @@ async fn charge_verify_test() {
 
     let auth = BasicAuth::new("sk_test_12345", "");
 
-    let server = SERVER_POOL.get_server();
+    let server = common::SERVER_POOL.get_server();
 
     server.expect(
         Expectation::matching(
