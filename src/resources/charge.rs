@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 use crate::client::{Client, Response};
 use crate::error::PinError;
 use crate::ids::{ChargeId, SessionId};
-use crate::params::{Metadata, Page, Paginator, unpack_contained, paginate};
+use crate::params::{Metadata, Page, Paginator, unpack_contained, paginate, SortDirection};
 use crate::resources::{
     CardParams,
     Card,
@@ -96,12 +96,6 @@ pub enum SortByField {
     CreatedAt,
     CapturedAt,
     Amount
-}
-
-#[derive(Debug, Serialize)]
-pub enum SortDirection {
-    Asc = 1,
-    Desc = -1
 }
 
 #[derive(Debug, Serialize, Default)]

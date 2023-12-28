@@ -1,0 +1,24 @@
+{
+  "response": {
+    "token": "tfer_lfUYEBK14zotCTykezJkfg",
+    "status": "succeeded",
+    "currency": "AUD",
+    "description": "Earnings for may",
+    "amount": 400,
+    "total_debits": 200,
+    "total_credits": 600,
+    "created_at": "2012-06-20T03:10:49Z",
+    "paid_at": "2012-06-20T03:10:49Z",
+    "reference": "Test Business",
+    "line_items_count": 2,
+    "bank_account": {
+      "token": "ba_nytGw7koRg23EEp9NTmz9w",
+      "name": "Mr Roland Robot",
+      "bsb": "123456",
+      "number": "XXXXXX321",
+      "bank_name": "",
+      "branch": ""
+    },
+    "recipient": "rp_a98a4fafROQCOT5PdwLkQ"
+  }
+}
