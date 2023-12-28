@@ -7,6 +7,7 @@ mod balance;
 mod bank_account;
 mod recipient;
 mod transfer;
+mod plan;
 
 pub use currency::*;
 pub use charge::*;
@@ -17,3 +18,4 @@ pub use balance::*;
 pub use bank_account::*;
 pub use recipient::*;
 pub use transfer::*;
+pub use plan::*;

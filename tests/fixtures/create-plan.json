@@ -1,0 +1,25 @@
+{
+  "response": {
+    "name": "Coffee Plan",
+    "amount": 1000,
+    "currency": "USD",
+    "setup_amount": 0,
+    "trial_amount": 0,
+    "interval": 30,
+    "interval_unit": "day",
+    "intervals": 6,
+    "trial_interval": 7,
+    "trial_interval_unit": "day",
+    "created_at": "2023-12-28T05:13:07Z",
+    "token": "plan_ZyDee4HNeUHFHC4SpM2idg",
+    "customer_permissions": [
+      "cancel"
+    ],
+    "subscription_counts": {
+      "trial": 0,
+      "active": 0,
+      "cancelling": 0,
+      "cancelled": 0
+    }
+  }
+}
