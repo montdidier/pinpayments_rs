@@ -1,0 +1,27 @@
+{
+  "response": [
+    {
+      "token": "rp_a98a4fafROQCOT5PdwLkQ",
+      "name": "Mr Roland Robot",
+      "email": "roland@pinpayments.com",
+      "created_at": "2012-06-22T06:27:33Z",
+      "bank_account": {
+        "token": "ba_nytGw7koRg23EEp9NTmz9w",
+        "name": "Mr Roland Robot",
+        "bsb": "123456",
+        "number": "XXXXXX321",
+        "bank_name": "",
+        "branch": ""
+      }
+    }
+  ],
+  "count": 1,
+  "pagination": {
+    "current": 1,
+    "previous": null,
+    "next": null,
+    "per_page": 25,
+    "pages": 1,
+    "count": 1
+  }
+}

@@ -5,6 +5,7 @@ mod customer;
 mod refund;
 mod balance;
 mod bank_account;
+mod recipient;
 
 pub use currency::*;
 pub use charge::*;
@@ -13,3 +14,4 @@ pub use customer::*;
 pub use refund::*;
 pub use balance::*;
 pub use bank_account::*;
+pub use recipient::*;
