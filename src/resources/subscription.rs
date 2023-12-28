@@ -77,7 +77,7 @@ impl Subscription {
     }
 
     pub fn reactivate(client: &Client, token: &SubscriptionId) -> Response<Subscription> {
-        unpack_contained(client.put(&format!("/subscriptions/{}", token)))
+        unpack_contained(client.put(&format!("/subscriptions/{}/reactivate", token)))
     }
 
     pub fn list_ledger_entries(client: &Client, token: &SubscriptionId, page: Option<u32>, per_page: Option<u32>) -> Response<Page<LedgerEntry>> {
