@@ -15,6 +15,7 @@ pub use crate::error::{ErrorCode, PinError};
 pub use crate::ids::*;
 pub use crate::params::{
     Headers,
+    SortDirection
 };
 pub use crate::resources::*;
 

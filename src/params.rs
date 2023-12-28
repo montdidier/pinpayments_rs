@@ -99,6 +99,12 @@ pub struct RangeBounds<T> {
     pub lte: Option<T>,
 }
 
+#[derive(Debug, Serialize)]
+pub enum SortDirection {
+    Asc = 1,
+    Desc = -1
+}
+
 impl<T> Default for RangeBounds<T> {
     fn default() -> Self {
         RangeBounds { gt: None, gte: None, lt: None, lte: None }

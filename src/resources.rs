@@ -6,6 +6,7 @@ mod refund;
 mod balance;
 mod bank_account;
 mod recipient;
+mod transfer;
 
 pub use currency::*;
 pub use charge::*;
@@ -15,3 +16,4 @@ pub use refund::*;
 pub use balance::*;
 pub use bank_account::*;
 pub use recipient::*;
+pub use transfer::*;
