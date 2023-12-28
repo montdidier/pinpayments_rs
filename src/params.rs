@@ -76,7 +76,7 @@ pub struct PaginationDetails {
     pub previous: Option<u64>,
     pub next: Option<u64>,
     pub per_page: u32,
-    pub pages: u32,
+    pub pages: Option<u32>,
     pub count: u64
 }
 
