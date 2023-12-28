@@ -107,4 +107,13 @@ async fn get_recipient_test() {
     let recipient = Recipient::retrieve(&client, &recipient_token).await.unwrap();
 
     assert_eq!(recipient.token, "rp_a98a4fafROQCOT5PdwLkQ");
+    assert_eq!(recipient.name.unwrap(), "Mr Roland Robot");
+    assert_eq!(recipient.email, "roland@pinpayments.com");
+    assert_eq!(recipient.created_at.unwrap(), datetime!(2012-06-22 6:27:33 UTC));
+    assert_eq!(recipient.bank_account.token, "ba_nytGw7koRg23EEp9NTmz9w");
+    assert_eq!(recipient.bank_account.name, "Mr Roland Robot");
+    assert_eq!(recipient.bank_account.bsb, "123456");
+    assert_eq!(recipient.bank_account.number, "XXXXXX321");
+    assert_eq!(recipient.bank_account.bank_name.unwrap(), "");
+    assert_eq!(recipient.bank_account.branch.unwrap(), "");
 }
