@@ -1,0 +1,67 @@
+{
+  "response": {
+    "token": "dis_JRs6Xgk4jMyF33yGijQ7Nw",
+    "category": "general",
+    "status": "evidence_required",
+    "amount": 100,
+    "currency": "AUD",
+    "charge": {
+      "token": "ch_yJM0U_NaAsyY2A7Se3IFYQ",
+      "success": true,
+      "amount": 100,
+      "currency": "AUD",
+      "description": "test charge",
+      "email": "roland@pinpayments.com",
+      "ip_address": "203.192.1.172",
+      "created_at": "2023-09-25T09:23:58Z",
+      "status_message": "Success",
+      "error_message": null,
+      "card": {
+        "token": "card_pIQJKMs93GsCc9vLSLevbw",
+        "scheme": "master",
+        "display_number": "XXXX-XXXX-XXXX-0000",
+        "issuing_country": "US",
+        "expiry_month": 5,
+        "expiry_year": 2024,
+        "name": "Roland Robot",
+        "address_line1": "42 Sevenoaks St",
+        "address_line2": "",
+        "address_city": "Lathlain",
+        "address_postcode": "6454",
+        "address_state": "WA",
+        "address_country": "Australia",
+        "network_type": null,
+        "network_format": null,
+        "customer_token": null,
+        "primary": null
+      },
+      "transfer": [],
+      "amount_refunded": 0,
+      "total_fees": 33,
+      "merchant_entitlement": 67,
+      "refund_pending": false,
+      "authorisation_token": null,
+      "authorisation_expired": false,
+      "authorisation_voided": false,
+      "captured": true,
+      "captured_at": "2023-09-25T09:23:58Z",
+      "settlement_currency": "AUD",
+      "active_chargebacks": false,
+      "metadata": {
+        "OrderNumber": "123456",
+        "CustomerName": "Roland Robot"
+      }
+    },
+    "evidence_required_by": "2023-10-15T00:00:00Z",
+    "relevant_evidence": [
+      "proof_of_delivery_or_service",
+      "invoice_or_receipt",
+      "invoice_showing_distinct_transactions",
+      "customer_communication",
+      "refund_or_cancellation_policy",
+      "recurring_transaction_agreement",
+      "additional_evidence"
+    ],
+    "received_at": "2023-09-25T09:23:58Z"
+  }
+}

@@ -22,6 +22,7 @@ pub struct Dispute {
     pub evidence_required_by: Option<OffsetDateTime>,
     pub relevant_evidence: Vec<String>,
 
+    #[serde(with = "time::serde::iso8601::option")]
     pub received_at: Option<OffsetDateTime>
 }
 
