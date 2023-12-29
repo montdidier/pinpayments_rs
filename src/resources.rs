@@ -9,6 +9,7 @@ mod recipient;
 mod transfer;
 mod plan;
 mod subscription;
+mod dispute;
 
 pub use currency::*;
 pub use charge::*;
@@ -21,3 +22,4 @@ pub use recipient::*;
 pub use transfer::*;
 pub use plan::*;
 pub use subscription::*;
+pub use dispute::*;

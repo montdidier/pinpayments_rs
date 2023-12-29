@@ -112,6 +112,12 @@ impl Client {
         self.client.execute::<T>(self.create_request(Method::Post, url))
     }
 
+    /// Make a http `POST` request using presented path returning only the status
+    pub fn post_status_only(&self, path: &str) -> StatusOnlyResponse {
+        let url = self.url(path);
+        self.client.execute_status_only(self.create_request(Method::Post, url))
+    }
+
     /// Make a http `POST` request urlencoding the body
     pub fn post_form<T: DeserializeOwned + Send + 'static, F: Serialize>(
         &self,
