@@ -5,19 +5,24 @@ members = [
 
 [package]
 name = "pinpayments_rs"
-version = "0.1.0"
+version = "0.9.0"
 description = "API bindings for the Pin Payments HTTP API"
 rust-version = "1.65.0"
 authors = [
   "Chris Kruger <chris.kruger@khi.org>"
 ]
-license = "MIT OR Apache-2.0"
+license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/montdidier/pinpayments_rs"
 repository = "https://github.com/montdidier/pinpayments_rs"
 keywords = ["pinpayments", "v1", "api", "async"]
 categories = ["api-bindings"]
 edition = "2021"
+
+include = [
+  "**/*.rs",
+  "Cargo.toml"
+]
 
 [lib]
 name = "pinpayments"

@@ -1,7 +1,7 @@
 use time::{OffsetDateTime};
 use serde::{Deserialize, Serialize};
 
-use crate::client::{Client, Response, StatusOnlyResponse};
+use crate::client::{Client, Response};
 use crate::error::PinError;
 use crate::ids::{PlanId, CustomerId, SubscriptionId, CardId};
 use crate::params::{unpack_contained, Page, Paginator, paginate};
@@ -66,6 +66,15 @@ impl Subscription {
             ("per_page", per_page.as_deref())
         ]);
         client.get_query("/subscriptions", &params)
+    }
+
+    pub fn list_with_paginator(client: &Client, per_page: Option<u32>) -> Paginator<Result<Subscription, PinError>> {
+        paginate(
+            move |page, per_page| {
+                Subscription::list(client, Some(page), Some(per_page))
+            },
+            per_page.unwrap_or(25)
+        )
     }
 
     pub fn retrieve(client: &Client, token: &SubscriptionId) -> Response<Subscription> {
