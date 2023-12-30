@@ -10,6 +10,7 @@ mod transfer;
 mod plan;
 mod subscription;
 mod dispute;
+mod file;
 
 pub use currency::*;
 pub use charge::*;
@@ -23,3 +24,4 @@ pub use transfer::*;
 pub use plan::*;
 pub use subscription::*;
 pub use dispute::*;
+pub use file::*;
