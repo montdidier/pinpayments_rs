@@ -1,0 +1,12 @@
+{
+  "response": {
+    "token": "file_lfUYEBK14zotCTykezJkfg",
+    "original_filename": "cat.jpeg",
+    "presigned_url": "https://pin-gateway-api-files-production-sandbox.s3.ap-southeast-2.amazonaws.com/sample.jpg",
+    "presigned_url_expires_at": "2023-09-19T07:49:26Z",
+    "purpose": "dispute_evidence",
+    "size": 8060,
+    "mime_type": "image/jpeg",
+    "uploaded_at": "2023-09-19T06:47:54Z"
+  }
+}
